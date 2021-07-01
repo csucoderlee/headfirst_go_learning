@@ -17,8 +17,8 @@ func main() {
 	//open不是在当前路径下查找, 而是项目的根目录
 	fmt.Println(exPath)
 
-	var nums [3]float64
-	nums, err = getFloats(exPath + "/src/ch5/data.txt")
+	var nums []float64
+	nums, err = getFloatsWithSlice(exPath + "/src/ch5/data.txt")
 	if err != nil {
 		log.Fatal("getFloats error")
 	}
@@ -28,7 +28,7 @@ func main() {
 	}
 }
 
-func getFloats(path string) ([3]float64, error) {
+func getFloatsWithArray(path string) ([3]float64, error) {
 	var nums [3]float64
 	file, err := os.Open(path)
 	if err != nil {
@@ -47,6 +47,37 @@ func getFloats(path string) ([3]float64, error) {
 	}
 
 	err = file.Close()
+
+	if err != nil {
+		return nums, err
+	}
+
+	if scanner.Err() != nil {
+		return nums, scanner.Err()
+	}
+
+	return nums, nil
+}
+
+func getFloatsWithSlice(path string) ([]float64, error) {
+
+	var nums []float64
+	file, err := os.Open(path)
+	if err != nil {
+		return nums, err
+	}
+
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		num, err := strconv.ParseFloat(scanner.Text(), 64)
+		if err != nil {
+			return nums, err
+		}
+		nums = append(nums, num)
+	}
+
+	err= file.Close()
 
 	if err != nil {
 		return nums, err
