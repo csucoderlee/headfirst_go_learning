@@ -9,6 +9,7 @@ func main() {
 
 	fmt.Println(inRange(1, 10, 1, 2, 3, 4, 5, 11))
 	fmt.Println(average(1, 2, 3, 4, 5))
+	fmt.Println(maximum(1, 2, 3, 4))
 }
 
 func maximum(numbers ...float64) float64 {

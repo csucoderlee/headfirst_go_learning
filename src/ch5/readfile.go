@@ -16,7 +16,8 @@ func main() {
 	//open不是在当前路径下查找, 而是项目的根目录
 	fmt.Println(exPath)
 
-	file, err := os.Open(exPath + "/src/ch5/data.txt")
+	//file, err := os.Open(exPath + "/src/ch5/data.txt")
+	file, err := os.Open("data.txt")
 
 	if err != nil {
 		log.Fatal(" open file error", err)
