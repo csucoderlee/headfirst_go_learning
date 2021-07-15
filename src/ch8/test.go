@@ -25,4 +25,12 @@ func main() {
 	subscriber1 := defaultSubscriber("Aman Singh")
 	applyDiscount(subscriber1)
 	printInfo(subscriber1)
+
+	subscriber2 := magazine.Subscriber{Name: "Aman Singh"}
+	subscriber2.HomeAddress.Street = "123 Oak Str"
+
+	employee := magazine.Employee{Name: "Aman Singh"}
+	//匿名struct可以直接赋值
+	employee.Street = "456 Oak Str"
+
 }
